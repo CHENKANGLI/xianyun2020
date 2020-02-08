@@ -10,9 +10,9 @@
    import Footer from '@/components/footer'
 
    export default {
-     components:[
+     components:{
        Header,Footer
-     ]
+     }
    }
 </script>
 <style>
