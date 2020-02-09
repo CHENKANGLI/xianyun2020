@@ -10,17 +10,10 @@
       </div>
       <!-- 菜单栏 -->
       <el-row type="flex" align="middle" class="navs">
-        <nuxt-link
-          v-for="(item,index) in navs"
-          :key="index"
-          :to="item.jump"
-          :class="{active:current==index}"
-          @click="handleClick(index)"
-        >{{item.name}}</nuxt-link>
-        <!-- <nuxt-link to="/">首页</nuxt-link> -->
-        <!-- <nuxt-link to="/post">旅游攻略</nuxt-link>
-             <nuxt-link to="/hotel">酒店</nuxt-link>
-        <nuxt-link to="/air">国内机票</nuxt-link>-->
+        <nuxt-link to="/">首页</nuxt-link>
+        <nuxt-link to="/post">旅游攻略</nuxt-link>
+        <nuxt-link to="/hotel">酒店</nuxt-link>
+        <nuxt-link to="/air">国内机票</nuxt-link>
       </el-row>
       <!-- 登录/用户 -->
       <!-- <el-dropdown v-if="false">
@@ -39,7 +32,7 @@
             <div @click="handleLogout">退出</div>
           </el-dropdown-item>
         </el-dropdown-menu>
-      </el-dropdown> -->
+      </el-dropdown>-->
 
       <el-row type="flex" align="middle">
         <nuxt-link to="/user/login" class="account-link">登录 / 注册</nuxt-link>
@@ -51,34 +44,9 @@
 <script>
 export default {
   data() {
-    return {
-      current: 0,
-      navs: [
-        {
-          jump: "/",
-          name: "首页"
-        },
-        {
-          jump: "/post",
-          name: "旅游攻略"
-        },
-        {
-          jump: "/hotel",
-          name: "酒店"
-        },
-        {
-          jump: "/air",
-          name: "国内机票"
-        }
-      ]
-    };
-  },
-  methods: {
-    handleClick(index) {
-      this.current = index;
-    }
+    return {}    
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -90,14 +58,13 @@ export default {
   border-bottom: 1px solid #ddd;
   .main {
     width: 1000px;
-    height: 100%;
     margin: 0 auto;
     .logo {
       width: 156px;
       padding-top: 8px;
       img {
         width: 100%;
-        // display: block;
+        display: block;
       }
     }
     .navs {
@@ -110,13 +77,13 @@ export default {
           border-bottom: 5px solid #409eff;
         }
       }
-      .nuxt-link-exact-active{
-            background: #409eff;
-            color: #fff;
-            &:hover{
-                color: #fff;
-            }
+      .nuxt-link-exact-active {
+        background: #409eff;
+        color: #fff;
+        &:hover {
+          color: #fff;
         }
+      }
     }
     .account-link {
       font-size: 14px;
