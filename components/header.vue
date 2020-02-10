@@ -16,11 +16,11 @@
         <nuxt-link to="/air">国内机票</nuxt-link>
       </el-row>
       <!-- 登录/用户 -->
-      <!-- <el-dropdown v-if="false">
+      <el-dropdown v-if="$store.state.user.userInfo.token">
         <el-row type="flex" align="middle" class="el-dropdown-link">
           <nuxt-link to="#">
-            <img src="http://157.122.54.189:9093/images/pic_sea.jpeg" />
-            用户名
+            <img :src="$axios.defaults.baseURL+$store.state.user.userInfo.user.defaultAvatar" />
+            {{$store.state.user.userInfo.user.nickname}}
           </nuxt-link>
           <i class="el-icon-caret-bottom el-icon--right"></i>
         </el-row>
@@ -32,9 +32,9 @@
             <div @click="handleLogout">退出</div>
           </el-dropdown-item>
         </el-dropdown-menu>
-      </el-dropdown>-->
+      </el-dropdown>
 
-      <el-row type="flex" align="middle">
+      <el-row type="flex" align="middle" v-else>
         <nuxt-link to="/user/login" class="account-link">登录 / 注册</nuxt-link>
       </el-row>
     </el-row>
@@ -45,55 +45,105 @@
 export default {
   data() {
     return {}    
+  },
+  methods:{
+    handleLogout(){
+      const {commit}=this.$store;
+      commit('user/cleanUserInfo');
+      this.$message.success('退出成功')
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
-.header {
-  height: 60px;
-  line-height: 60px;
-  box-shadow: 0 3px 0 #f5f5f5;
-  box-sizing: border-box;
-  border-bottom: 1px solid #ddd;
-  .main {
-    width: 1000px;
-    margin: 0 auto;
-    .logo {
-      width: 156px;
-      padding-top: 8px;
-      img {
-        width: 100%;
-        display: block;
-      }
-    }
-    .navs {
-      margin: 0 20px;
-      flex: 1;
-      a {
-        padding: 0 20px;
-        &:hover {
-          color: #409eff;
-          border-bottom: 5px solid #409eff;
+.header{
+        height: 60px;
+        line-height:60px;
+        background:#fff;
+        border-bottom: 1px #ddd solid;
+        box-shadow:0 3px 0 #f5f5f5;
+        box-sizing: border-box;
+
+        .main{
+            width:1000px;
+            margin:0 auto;
         }
-      }
-      .nuxt-link-exact-active {
-        background: #409eff;
-        color: #fff;
-        &:hover {
-          color: #fff;
+
+        .logo{
+            width:156px;
+            padding-top:8px;
+
+            img{
+                display: block;
+                width:100%;
+            }
         }
-      }
-    }
-    .account-link {
-      font-size: 14px;
-      color: #666;
-      margin-left: 10px;
-      &:hover {
-        color: #409eff;
-        text-decoration: underline;
-      }
-    }
-  }
-}
+
+        .navs{
+            margin: 0 20px;
+            flex:1;
+
+            a{
+                display:block;
+                padding:0 20px;
+                height:60px;
+                box-sizing: border-box;
+
+                &:hover,&:focus, &:active {
+                    border-bottom:5px #409eff solid;
+                    color:#409eff;
+                }
+            }
+
+            /deep/ .nuxt-link-exact-active{
+                background:#409eff;
+                color:#fff!important;
+            }
+        }
+
+        .message{
+            height:36px;
+            line-height:1;
+            cursor:pointer;
+            .el-icon-bell{
+                margin-right:2px;
+                font-size:18px;      
+            }
+        }
+
+        .el-dropdown-link{
+           margin-left:20px;
+
+           &:hover{
+               img{
+                    border-color: #409eff;
+               }
+            }
+
+           a{
+               display:block;
+           }
+
+            img{
+
+                width:32px;
+                height:32px;
+                vertical-align: middle;
+                border:2px #fff solid;
+                border-radius:50px;
+            }
+        }
+
+        .account-link{
+            font-size: 14px;
+            margin-left:10px;
+            color:#666;
+
+            &:hover{
+                color:#409eff;
+                text-decoration: underline;
+            }
+        }
+    } 
 </style>
