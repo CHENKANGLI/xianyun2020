@@ -5,7 +5,7 @@
       <i>国内机票</i>
     </h2>
     <el-row type="flex" justify="space-between">
-        <div>搜索</div>
+        <SearchForm></SearchForm>
         <div class="sale-banner">
           <img src="http://157.122.54.189:9093/images/pic_sale.jpeg" alt="">
         </div>
@@ -35,7 +35,12 @@
 </template>
 
 <script>
-export default {};
+import SearchForm from '@/components/air/searchForm'
+export default {
+  components:{
+    SearchForm
+  }
+};
 </script>
 
 <style lang='less' scoped>
