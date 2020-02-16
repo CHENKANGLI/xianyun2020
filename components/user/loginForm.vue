@@ -55,7 +55,10 @@ export default {
           // })
           this.$store.dispatch('user/login',this.form).then(res=>{
             this.$message.success('登录成功');
-            this.$router.push('/')
+            // push和replace的区别
+            // push
+            // replace
+            this.$router.replace('/')
           })
         }
       })
