@@ -69,6 +69,35 @@ export default {
             // 如果组件调用时候不传data，采用默认值
             default:{}
         }
+    },
+    computed:{
+        rankTime(){
+            const end=this.data.arr_time.split(':')
+            const start=this.data.dep_time.split(':')
+            // 将时间转换为分钟
+            let endMin=end[0]*60+Number(end[1])
+            let startMin=start[0]*60+Number(start[1])
+            // 跨天（红眼航班）
+            if(endMin<startMin){
+                endMin+=24*60
+            }
+            // 相隔分钟
+            const dis=endMin-startMin
+            const hours=Math.floor(dis/60)
+            const min = dis%60
+            return `${hours}小时${min}分`
+        }
+    },
+    methods:{
+        handleToOrder(item){
+            this.$router.push({
+                path:'/air/order',
+                query:{
+                    id:this.data.id,//航班id
+                    seat_xid:item.seat_xid//座位id
+                }
+            })
+        }
     }
 };
 </script>

@@ -73,7 +73,7 @@ export default {
         departCode: "",
         destCity: "",
         destCode: "",
-        departDate: new Date()
+        departDate: ''
       },
       // 设置禁用状态，参数为当前日期
       pickerOptions: {
